@@ -2,9 +2,9 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
+use Tests\PreAccessTokenTestCase;
 
-class UserTest extends TestCase
+class UserTest extends PreAccessTokenTestCase
 {
 
     public function test_get_user()

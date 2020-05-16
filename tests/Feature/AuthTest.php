@@ -2,10 +2,10 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
+use Tests\PreAccessTokenTestCase;
 use Tests\Variables;
 
-class AuthTest extends TestCase
+class AuthTest extends PreAccessTokenTestCase
 {
 
     public function test_can_get_bearer_token()
