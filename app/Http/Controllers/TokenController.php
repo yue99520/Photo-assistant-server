@@ -7,7 +7,7 @@ use App\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 
-class InitTokenController extends Controller
+class TokenController extends Controller
 {
     public function init(UserTokenInitRequest $request)
     {

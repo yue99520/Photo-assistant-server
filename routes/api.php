@@ -14,6 +14,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::post('/token', 'InitTokenController@init');
+Route::post('/token', 'TokenController@init');
 
 Route::middleware('auth:sanctum')->get('/user', 'UserController@get');
