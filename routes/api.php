@@ -26,3 +26,5 @@ Route::post('/logout', 'Api\TokenController@logout')->middleware('auth:sanctum')
  * User routes
  */
 Route::get('/user', 'UserController@get')->middleware('auth:sanctum');
+
+Route::post('/user', 'UserController@update')->middleware('auth:sanctum');
