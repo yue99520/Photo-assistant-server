@@ -6,6 +6,11 @@ namespace App\Http\ValidateRules;
 
 class UserValidateRule
 {
+    static function id()
+    {
+        return ['required', 'numeric', 'exists:users,id'];
+    }
+
     static function name()
     {
         return ['required', 'string', 'max:255', 'unique:users,name'];
