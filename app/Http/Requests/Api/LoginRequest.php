@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests\Api;
 
+use App\Http\ValidateRules\TokenValidateRule;
+use App\Http\ValidateRules\UserValidateRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 
@@ -16,18 +18,9 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|email',
-            'password' => 'required',
-            'device_name' => 'required'
-        ];
-    }
-
-    public function messages()
-    {
-        return [
-            'email.required' => 'Email is required.',
-            'password.required' => 'Password is required.',
-            'device_name.required' => 'Device name is required.'
+            'email' => UserValidateRule::email(),
+            'password' => UserValidateRule::checkPassword(),
+            'device_name' => TokenValidateRule::deviceName(),
         ];
     }
 }

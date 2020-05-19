@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Api;
 
+use App\Http\ValidateRules\UserValidateRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class RegisterRequest extends FormRequest
@@ -24,9 +25,9 @@ class RegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            "name" => "required|unique:users,name|alpha_dash",
-            "email" => "required|email",
-            "password" => "required|confirmed"
+            "name" => UserValidateRule::name(),
+            "email" => UserValidateRule::email(),
+            "password" => UserValidateRule::updatePassword(),
         ];
     }
 }
