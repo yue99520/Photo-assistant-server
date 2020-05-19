@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 use function auth;
 
-class TokenController extends Controller
+class AuthController extends Controller
 {
     public function login(LoginRequest $request)
     {

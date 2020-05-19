@@ -16,11 +16,11 @@ use Illuminate\Support\Facades\Route;
 /*
  * Auth routes
  */
-Route::post('/register', 'Api\TokenController@register');
+Route::post('/register', 'Api\AuthController@register');
 
-Route::post('/login', 'Api\TokenController@login');
+Route::post('/login', 'Api\AuthController@login');
 
-Route::post('/logout', 'Api\TokenController@logout')->middleware('auth:sanctum');
+Route::post('/logout', 'Api\AuthController@logout')->middleware('auth:sanctum');
 
 /*
  * User routes
