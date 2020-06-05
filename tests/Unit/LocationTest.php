@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Entry;
 use App\Location;
 use App\User;
 use Tests\TestCase;
@@ -32,5 +33,16 @@ class LocationTest extends TestCase
         }
 
         $this->assertCount(10, $user->locations);
+    }
+
+    public function testLocationCanGetEntries()
+    {
+        $location = factory(Location::class)->create();
+
+        $entries = factory(Entry::class, 10)->create();
+
+        $location->entries()->saveMany($entries);
+
+        $this->assertCount(10, $location->entries()->get());
     }
 }

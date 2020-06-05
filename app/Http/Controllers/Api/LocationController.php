@@ -9,7 +9,5 @@ class LocationController extends Controller
     public function index()
     {
         $user = auth()->user();
-
-
     }
 }
