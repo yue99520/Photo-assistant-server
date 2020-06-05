@@ -16,6 +16,11 @@ class UserValidateRule
         return ['required', 'string', 'max:255', 'unique:users,name'];
     }
 
+    static function loginEmail()
+    {
+        return ['required', 'string', 'email', 'max:255'];
+    }
+
     static function email()
     {
         return ['required', 'string', 'email', 'max:255', 'unique:users'];

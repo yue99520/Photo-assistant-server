@@ -18,7 +18,7 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => UserValidateRule::email(),
+            'email' => UserValidateRule::loginEmail(),
             'password' => UserValidateRule::checkPassword(),
             'device_name' => TokenValidateRule::deviceName(),
         ];

@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 
 class LocationController extends Controller
 {
-    public function index()
+    public function getAll()
     {
-        $user = auth()->user();
+
     }
 }

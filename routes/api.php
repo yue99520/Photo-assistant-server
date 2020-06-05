@@ -28,3 +28,5 @@ Route::post('/logout', 'Api\AuthController@logout')->middleware('auth:sanctum');
 Route::get('/user', 'UserController@get')->middleware('auth:sanctum');
 
 Route::post('/user', 'UserController@update')->middleware('auth:sanctum');
+
+//Route::get('/location/all', 'LocationController@getAll');
