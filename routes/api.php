@@ -20,8 +20,9 @@ Route::post('/register', 'Api\AuthController@register');
 
 Route::post('/login', 'Api\AuthController@login');
 
-Route::post('/logout', 'Api\AuthController@logout')->middleware('auth:sanctum');
+Route::post('/login_check', 'Api\AuthController@isLogin')->middleware('auth:sanctum');
 
+Route::post('/logout', 'Api\AuthController@logout')->middleware('auth:sanctum');
 /*
  * User routes
  */
