@@ -5,7 +5,7 @@ namespace App\Http\Requests\Locations;
 use App\Http\ValidateRules\LocationValidateRule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class PostLocationRequest extends FormRequest
+class UpdateLocationRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,11 +25,11 @@ class PostLocationRequest extends FormRequest
     public function rules()
     {
         return [
-            "title" => LocationValidateRule::title(),
-            "subtitle" => LocationValidateRule::subTitle(),
+            "id" => LocationValidateRule::id(),
             "longitude" => LocationValidateRule::longitude(),
             "latitude" => LocationValidateRule::latitude(),
-            "image" => LocationValidateRule::image(),
+            "title" => LocationValidateRule::title(),
+            "subtitle" => LocationValidateRule::subTitle(),
         ];
     }
 }

@@ -6,6 +6,11 @@ namespace App\Http\ValidateRules;
 
 class LocationValidateRule
 {
+    static function id()
+    {
+        return ['required', 'numeric'];
+    }
+
     static function title()
     {
         return ['required', 'string', 'max:255'];
@@ -13,7 +18,7 @@ class LocationValidateRule
 
     static function subTitle()
     {
-        return ['required', 'string'];
+        return ['required', 'string', 'max:255'];
     }
 
     static function longitude()
