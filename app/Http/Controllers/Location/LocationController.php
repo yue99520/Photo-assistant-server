@@ -32,8 +32,14 @@ class LocationController extends Controller
     public function create(CreateLocationRequest $request)
     {
         $validatedData = $request->validated();
+
+        //todo make a factory class and a ConvertableLocation interface
         $location = new Location();
-        $location->fromArray($validatedData);
+        $location->longitude = $validatedData['longitude'];
+        $location->latitude = $validatedData['latitude'];
+        $location->title = $validatedData['title'];
+        $location->subtitle = $validatedData['subtitle'];
+
         auth()->user()->locations()->save($location);
 
         return response()->json([

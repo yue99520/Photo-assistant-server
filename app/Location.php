@@ -2,9 +2,11 @@
 
 namespace App;
 
+use App\Contracts\Taggable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
-class Location extends Model
+class Location extends Model implements Taggable
 {
     public function user()
     {
@@ -16,28 +18,23 @@ class Location extends Model
         return $this->hasMany(Entry::class);
     }
 
-    public function toArray()
+    function getTaggableId()
     {
-        return [
-            'id' => $this->id,
-            'longitude' => $this->longitude,
-            'latitude' => $this->latitude,
-            'title' => $this->title,
-            'subtitle' => $this->subtitle,
-            'entry_amount' => $this->entries()->count(),
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
-        ];
+        return $this->id;
     }
 
-    public function fromArray(array $data = [])
+    function getTaggableType()
     {
-        if (isset($data['id'])) {
-            $this->id = $data['id'];
-        }
-        $this->longitude = $data['longitude'];
-        $this->latitude = $data['latitude'];
-        $this->title = $data['title'];
-        $this->subtitle = $data['subtitle'];
+        return Location::class;
+    }
+
+    function getTaggableTitle()
+    {
+        return $this->title;
+    }
+
+    function tags(): MorphToMany
+    {
+        return $this->morphedByMany(Tag::class);
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEventConditionsTable extends Migration
+class CreateTagTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateEventConditionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('event_conditions', function (Blueprint $table) {
+        Schema::create('tag', function (Blueprint $table) {
             $table->id();
-            $table->string("event")->nullable(false);
+            $table->string("title")->nullable(false);
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ class CreateEventConditionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('conditions');
+        Schema::dropIfExists('tag');
     }
 }

@@ -2,23 +2,34 @@
 
 namespace App;
 
+use App\Contracts\Taggable;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
-class Entry extends Model
+class Entry extends Model implements Taggable
 {
     public function location()
     {
         return $this->belongsTo(Location::class);
     }
 
-    /**
-     * return query of the condition
-     *
-     * @return MorphTo
-     */
-    public function entriable()
+    function getTaggableId()
     {
-        return $this->morphTo();
+        return $this->id;
+    }
+
+    function getTaggableType()
+    {
+        return Entry::class;
+    }
+
+    function getTaggableTitle()
+    {
+        return $this->title;
+    }
+
+    function tags(): MorphToMany
+    {
+        return $this->morphedByMany(Tag::class);
     }
 }

@@ -17,11 +17,6 @@ class CreateEntriesTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('subtitle')->nullable(true);
-
-            $table->morphs("entriable");
-            $table->unsignedBigInteger('location_id')->nullable();
-            $table->foreign('location_id')->references('id')->on('locations');
-
             $table->timestamps();
         });
     }
