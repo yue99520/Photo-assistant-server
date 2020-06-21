@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\RegisterRequest;
 use App\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use function auth;
 
@@ -36,14 +35,14 @@ class AuthController extends Controller
         return response()->json(['success' => true]);
     }
 
-    public function logout(Request $request)
+    public function logout()
     {
         auth()->user()->currentAccessToken()->delete();
 
         return response()->json(['success' => true]);
     }
 
-    public function isLogin(Request $request)
+    public function isLogin()
     {
         return response()->json(['success' => true, 'message' => 'success']);
     }
