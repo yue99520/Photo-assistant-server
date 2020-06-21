@@ -4,7 +4,7 @@ namespace App\Http\Requests\Location;
 
 use App\Http\Requests\BaseFormRequest;
 
-class DeleteLocationRequest extends BaseFormRequest
+class GetAllLocationsRequest extends BaseFormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,9 +13,7 @@ class DeleteLocationRequest extends BaseFormRequest
      */
     public function authorize()
     {
-        $data = $this->request->all();
-
-        return auth()->user()->locations()->find($data['location_id'])->exists();
+        return true;
     }
 
     /**
@@ -26,7 +24,7 @@ class DeleteLocationRequest extends BaseFormRequest
     public function rules()
     {
         return [
-            'location_id' => ['required', 'numeric']
+            //
         ];
     }
 }

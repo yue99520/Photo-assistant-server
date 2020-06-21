@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests\Location;
 
-use App\Http\ValidateRules\LocationValidateRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateLocationRequest extends FormRequest
@@ -14,7 +13,9 @@ class UpdateLocationRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        $data = $this->request->all();
+
+        return auth()->user()->locations()->find($data['location_id'])->exists();
     }
 
     /**
@@ -25,11 +26,11 @@ class UpdateLocationRequest extends FormRequest
     public function rules()
     {
         return [
-            "id" => LocationValidateRule::id(),
-            "longitude" => LocationValidateRule::longitude(),
-            "latitude" => LocationValidateRule::latitude(),
-            "title" => LocationValidateRule::title(),
-            "subtitle" => LocationValidateRule::subTitle(),
+            "location_id" => ['required', 'numeric'],
+            "longitude" => ['required', 'numeric'],
+            "latitude" => ['required', 'numeric'],
+            "title" => ['required', 'string', 'max:50'],
+            "subtitle" => ['required', 'string', 'max:255'],
         ];
     }
 }

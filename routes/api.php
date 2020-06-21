@@ -34,9 +34,7 @@ Route::post('/user', 'UserController@update')->middleware('auth:sanctum');
  * Location routes
  */
 
-Route::get('/location/all', 'Location\LocationController@getAll')->middleware('auth:sanctum');
-
-Route::get('/location/{id}', 'Location\LocationController@getOne')->middleware('auth:sanctum');
+Route::post('/location/get', 'Location\LocationController@get')->middleware('auth:sanctum');
 
 Route::post('/location/create', 'Location\LocationController@create')->middleware('auth:sanctum');
 

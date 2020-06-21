@@ -2,10 +2,9 @@
 
 namespace App\Http\Requests\Location;
 
-use App\Http\ValidateRules\LocationValidateRule;
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\BaseFormRequest;
 
-class CreateLocationRequest extends FormRequest
+class CreateLocationRequest extends BaseFormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,10 +24,10 @@ class CreateLocationRequest extends FormRequest
     public function rules()
     {
         return [
-            "longitude" => LocationValidateRule::longitude(),
-            "latitude" => LocationValidateRule::latitude(),
-            "title" => LocationValidateRule::title(),
-            "subtitle" => LocationValidateRule::subTitle(),
+            "longitude" => ['required', 'numeric'],
+            "latitude" => ['required', 'numeric'],
+            "title" => ['required', 'string', 'max:50'],
+            "subtitle" => ['required', 'string', 'max:255'],
         ];
     }
 }
