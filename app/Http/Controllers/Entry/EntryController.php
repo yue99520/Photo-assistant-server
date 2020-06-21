@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Entry;
 
 use App\Entry;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Entries\CreateEntryRequest;
-use App\Http\Requests\Entries\DeleteEntryRequest;
-use App\Http\Requests\Entries\GetAllEntriesRequest;
-use App\Http\Requests\Entries\UpdateEntryRequest;
+use App\Http\Requests\Entry\CreateEntryRequest;
+use App\Http\Requests\Entry\DeleteEntryRequest;
+use App\Http\Requests\Entry\GetAllEntriesRequest;
+use App\Http\Requests\Entry\UpdateEntryRequest;
 use App\Http\Response\StandardHttpResponse;
 use App\Location;
 use Exception;

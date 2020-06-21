@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Location;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Locations\CreateLocationRequest;
-use App\Http\Requests\Locations\DeleteLocationRequest;
-use App\Http\Requests\Locations\UpdateLocationRequest;
+use App\Http\Requests\Location\CreateLocationRequest;
+use App\Http\Requests\Location\DeleteLocationRequest;
+use App\Http\Requests\Location\UpdateLocationRequest;
 use App\Location;
 
 class LocationController extends Controller

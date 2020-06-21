@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Locations;
+namespace App\Http\Requests\Location;
 
 use App\Http\ValidateRules\LocationValidateRule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateLocationRequest extends FormRequest
+class CreateLocationRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +25,6 @@ class UpdateLocationRequest extends FormRequest
     public function rules()
     {
         return [
-            "id" => LocationValidateRule::id(),
             "longitude" => LocationValidateRule::longitude(),
             "latitude" => LocationValidateRule::latitude(),
             "title" => LocationValidateRule::title(),

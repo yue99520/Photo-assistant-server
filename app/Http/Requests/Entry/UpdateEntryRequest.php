@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Http\Requests\Entries;
+namespace App\Http\Requests\Entry;
 
+use App\Entry;
 use App\Http\Response\StandardHttpResponse;
+use Exception;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateEntryRequest extends FormRequest
+class UpdateEntryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -15,9 +17,17 @@ class CreateEntryRequest extends FormRequest
      */
     public function authorize()
     {
-        $data = $this->request->all();
+        try {
+            $data = $this->request->all();
 
-        return auth()->user()->locations()->find($data['location_id'])->exists();
+            $entry = Entry::query()->find($data['entry_id']);
+
+            return $entry->location->user->id === auth()->id();
+
+        } catch (Exception $exception) {
+
+            return false;
+        }
     }
 
     /**
@@ -28,7 +38,7 @@ class CreateEntryRequest extends FormRequest
     public function rules()
     {
         return [
-            'location_id' => ['required', 'numeric'],
+            'entry_id' => ['required', 'numeric'],
             'title' => ['required', 'string'],
             'subtitle' => ['required', 'string']
         ];
@@ -36,11 +46,11 @@ class CreateEntryRequest extends FormRequest
 
     protected function failedAuthorization()
     {
-        return StandardHttpResponse::authorizationException();
+        throw StandardHttpResponse::authorizationException();
     }
 
     protected function failedValidation(Validator $validator)
     {
-        return StandardHttpResponse::validateException($validator);
+        throw StandardHttpResponse::validateException($validator);
     }
 }

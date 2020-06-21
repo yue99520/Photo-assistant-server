@@ -1,15 +1,14 @@
 <?php
 
-namespace App\Http\Requests\Entries;
+namespace App\Http\Requests\Entry;
 
 use App\Entry;
-use App\Http\Response\StandardHttpResponse;
 use Exception;
-use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateEntryRequest extends FormRequest
+class DeleteEntryRequest extends FormRequest
 {
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -38,19 +37,7 @@ class UpdateEntryRequest extends FormRequest
     public function rules()
     {
         return [
-            'entry_id' => ['required', 'numeric'],
-            'title' => ['required', 'string'],
-            'subtitle' => ['required', 'string']
+            'entry_id' => ['required', 'numeric']
         ];
-    }
-
-    protected function failedAuthorization()
-    {
-        throw StandardHttpResponse::authorizationException();
-    }
-
-    protected function failedValidation(Validator $validator)
-    {
-        throw StandardHttpResponse::validateException($validator);
     }
 }
