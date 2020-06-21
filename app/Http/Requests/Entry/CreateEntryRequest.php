@@ -2,11 +2,9 @@
 
 namespace App\Http\Requests\Entry;
 
-use App\Http\Response\StandardHttpResponse;
-use Illuminate\Contracts\Validation\Validator;
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\BaseFormRequest;
 
-class CreateEntryRequest extends FormRequest
+class CreateEntryRequest extends BaseFormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -29,18 +27,8 @@ class CreateEntryRequest extends FormRequest
     {
         return [
             'location_id' => ['required', 'numeric'],
-            'title' => ['required', 'string'],
-            'subtitle' => ['required', 'string']
+            'title' => ['required', 'string', 'max:50'],
+            'subtitle' => ['required', 'string', 'max:255']
         ];
-    }
-
-    protected function failedAuthorization()
-    {
-        return StandardHttpResponse::authorizationException();
-    }
-
-    protected function failedValidation(Validator $validator)
-    {
-        return StandardHttpResponse::validateException($validator);
     }
 }

@@ -2,11 +2,9 @@
 
 namespace App\Http\Requests\Entry;
 
-use App\Http\Response\StandardHttpResponse;
-use Illuminate\Contracts\Validation\Validator;
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\BaseFormRequest;
 
-class GetAllEntriesRequest extends FormRequest
+class GetAllEntriesRequest extends BaseFormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -18,16 +16,6 @@ class GetAllEntriesRequest extends FormRequest
         $data = $this->request->all();
 
         return auth()->user()->locations()->find($data['location'])->exists();
-    }
-
-    public function failedAuthorization()
-    {
-        throw StandardHttpResponse::authorizationException();
-    }
-
-    public function failedValidation(Validator $validator)
-    {
-        throw StandardHttpResponse::validateException($validator);
     }
 
     /**

@@ -3,12 +3,10 @@
 namespace App\Http\Requests\Entry;
 
 use App\Entry;
-use App\Http\Response\StandardHttpResponse;
+use App\Http\Requests\BaseFormRequest;
 use Exception;
-use Illuminate\Contracts\Validation\Validator;
-use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateEntryRequest extends FormRequest
+class UpdateEntryRequest extends BaseFormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,7 +20,7 @@ class UpdateEntryRequest extends FormRequest
 
             $entry = Entry::query()->find($data['entry_id']);
 
-            return $entry->location->user->id === auth()->id();
+            return $entry->location->user_id === auth()->id();
 
         } catch (Exception $exception) {
 
@@ -39,18 +37,8 @@ class UpdateEntryRequest extends FormRequest
     {
         return [
             'entry_id' => ['required', 'numeric'],
-            'title' => ['required', 'string'],
-            'subtitle' => ['required', 'string']
+            'title' => ['required', 'string', 'max:50'],
+            'subtitle' => ['required', 'string', 'max:255']
         ];
-    }
-
-    protected function failedAuthorization()
-    {
-        throw StandardHttpResponse::authorizationException();
-    }
-
-    protected function failedValidation(Validator $validator)
-    {
-        throw StandardHttpResponse::validateException($validator);
     }
 }

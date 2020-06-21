@@ -3,10 +3,10 @@
 namespace App\Http\Requests\Entry;
 
 use App\Entry;
+use App\Http\Requests\BaseFormRequest;
 use Exception;
-use Illuminate\Foundation\Http\FormRequest;
 
-class DeleteEntryRequest extends FormRequest
+class DeleteEntryRequest extends BaseFormRequest
 {
 
     /**
@@ -21,7 +21,7 @@ class DeleteEntryRequest extends FormRequest
 
             $entry = Entry::query()->find($data['entry_id']);
 
-            return $entry->location->user->id === auth()->id();
+            return $entry->location->user_id === auth()->id();
 
         } catch (Exception $exception) {
 

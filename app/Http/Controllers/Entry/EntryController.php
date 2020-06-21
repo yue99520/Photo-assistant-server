@@ -27,11 +27,6 @@ class EntryController extends Controller
 
         $entries = Location::query()->find($validatedData['location_id'])->entries()->get();
 
-        $entries->map(function ($value, $key) {
-            $tags = $value->tags()->get();
-            $value['tags'] = $tags->toArray();
-        });
-
         return response()->json(StandardHttpResponse::json(true, 'ok', $entries->toArray()));
     }
 
@@ -49,7 +44,7 @@ class EntryController extends Controller
         $entry->title = $validatedData['title'];
         $entry->subtitle = $validatedData['subtitle'];
 
-        $location = Location::query()->find($validatedData['id']);
+        $location = Location::query()->find($validatedData['location_id']);
         $location->entries()->save($entry);
 
         return response()->json(StandardHttpResponse::json(true, 'ok', $entry->toArray()));
