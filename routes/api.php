@@ -43,3 +43,15 @@ Route::post('/location/create', 'Location\LocationController@create')->middlewar
 Route::post('/location/update', 'Location\LocationController@update')->middleware('auth:sanctum');
 
 Route::post('/location/delete', 'Location\LocationController@delete')->middleware('auth:sanctum');
+
+/*
+ * Entry routes
+ */
+
+Route::post('/entry/get', 'Entry\EntryController@get')->middleware('auth:sanctum');
+
+Route::post('/entry/create', 'Entry\EntryController@create')->middleware('auth:sanctum');
+
+Route::post('/entry/update', 'Entry\EntryController@update')->middleware('auth:sanctum');
+
+Route::post('/entry/delete', 'Entry\EntryController@delete')->middleware('auth:sanctum');
