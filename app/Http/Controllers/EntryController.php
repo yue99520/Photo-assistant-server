@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Entry;
+namespace App\Http\Controllers;
 
 use App\Entry;
-use App\Http\Controllers\Controller;
 use App\Http\Requests\Entry\CreateEntryRequest;
 use App\Http\Requests\Entry\DeleteEntryRequest;
 use App\Http\Requests\Entry\GetAllEntriesRequest;

@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Http\Controllers\Location;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Http\Requests\Location\CreateLocationRequest;
 use App\Http\Requests\Location\DeleteLocationRequest;
 use App\Http\Requests\Location\UpdateLocationRequest;

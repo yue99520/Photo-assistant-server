@@ -16,13 +16,13 @@ use Illuminate\Support\Facades\Route;
 /*
  * Auth routes
  */
-Route::post('/register', 'Auth\AuthController@register');
+Route::post('/register', 'AuthController@register');
 
-Route::post('/login', 'Auth\AuthController@login');
+Route::post('/login', 'AuthController@login');
 
-Route::post('/login_check', 'Auth\AuthController@isLogin')->middleware('auth:sanctum');
+Route::post('/login_check', 'AuthController@isLogin')->middleware('auth:sanctum');
 
-Route::post('/logout', 'Auth\AuthController@logout')->middleware('auth:sanctum');
+Route::post('/logout', 'AuthController@logout')->middleware('auth:sanctum');
 /*
  * User routes
  */
@@ -34,22 +34,22 @@ Route::post('/user', 'UserController@update')->middleware('auth:sanctum');
  * Location routes
  */
 
-Route::post('/location/get', 'Location\LocationController@get')->middleware('auth:sanctum');
+Route::post('/location/get', 'LocationController@get')->middleware('auth:sanctum');
 
-Route::post('/location/create', 'Location\LocationController@create')->middleware('auth:sanctum');
+Route::post('/location/create', 'LocationController@create')->middleware('auth:sanctum');
 
-Route::post('/location/update', 'Location\LocationController@update')->middleware('auth:sanctum');
+Route::post('/location/update', 'LocationController@update')->middleware('auth:sanctum');
 
-Route::post('/location/delete', 'Location\LocationController@delete')->middleware('auth:sanctum');
+Route::post('/location/delete', 'LocationController@delete')->middleware('auth:sanctum');
 
 /*
  * Entry routes
  */
 
-Route::post('/entry/get', 'Entry\EntryController@get')->middleware('auth:sanctum');
+Route::post('/entry/get', 'EntryController@get')->middleware('auth:sanctum');
 
-Route::post('/entry/create', 'Entry\EntryController@create')->middleware('auth:sanctum');
+Route::post('/entry/create', 'EntryController@create')->middleware('auth:sanctum');
 
-Route::post('/entry/update', 'Entry\EntryController@update')->middleware('auth:sanctum');
+Route::post('/entry/update', 'EntryController@update')->middleware('auth:sanctum');
 
-Route::post('/entry/delete', 'Entry\EntryController@delete')->middleware('auth:sanctum');
+Route::post('/entry/delete', 'EntryController@delete')->middleware('auth:sanctum');
