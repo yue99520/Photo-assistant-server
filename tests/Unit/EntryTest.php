@@ -11,6 +11,6 @@ class EntryTest extends TestCase
     {
         $entry = factory(Entry::class)->create();
 
-        $this->assertTrue($entry->entriable()->exists());
+        $this->assertTrue($entry->condition()->exists());
     }
 }

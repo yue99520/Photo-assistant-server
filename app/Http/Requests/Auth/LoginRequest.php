@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Api;
+namespace App\Http\Requests\Auth;
 
 use App\Http\ValidateRules\TokenValidateRule;
 use App\Http\ValidateRules\UserValidateRule;
