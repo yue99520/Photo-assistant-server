@@ -22,7 +22,7 @@ class StandardHttpResponse
         );
     }
 
-    public static function json(bool $success, string $message, $data): array
+    public static function json(bool $success, $message, $data): array
     {
         return ['success' => $success, 'message' => $message, 'data' => $data];
     }
