@@ -3,8 +3,6 @@
 namespace App\Http\Requests\Auth;
 
 use App\Http\Requests\BaseFormRequest;
-use App\Http\ValidateRules\TokenValidateRule;
-use App\Http\ValidateRules\UserValidateRule;
 
 
 class LoginRequest extends BaseFormRequest
