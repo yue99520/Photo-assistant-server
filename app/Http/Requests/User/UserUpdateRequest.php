@@ -24,7 +24,7 @@ class UserUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            "name" => "required|unique:users,name|alpha_dash"
+            "name" => ["required", "unique:users", "name", "alpha_dash"]
         ];
     }
 }

@@ -4,12 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Http\Formatters\UserFormatter;
 use App\Http\Requests\User\UserUpdateRequest;
+use App\Http\Response\StandardHttpResponse;
 
 class UserController extends Controller
 {
     public function get(UserFormatter $formatter)
     {
-        return $formatter->formatOne(auth()->user());
+        $user = auth()->user();
+
+        return response()->json(StandardHttpResponse::json(true, 'ok', [
+            'user' => $formatter->format($user)
+        ]));
     }
 
     public function update(UserUpdateRequest $request, UserFormatter $formatter)
@@ -22,6 +27,8 @@ class UserController extends Controller
 
         $user->save();
 
-        return $formatter->formatOne($user);
+        return response()->json(StandardHttpResponse::json(true, 'ok', [
+            'user' => $formatter->format($user)
+        ]));
     }
 }

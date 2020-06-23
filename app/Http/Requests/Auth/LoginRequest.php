@@ -2,12 +2,12 @@
 
 namespace App\Http\Requests\Auth;
 
+use App\Http\Requests\BaseFormRequest;
 use App\Http\ValidateRules\TokenValidateRule;
 use App\Http\ValidateRules\UserValidateRule;
-use Illuminate\Foundation\Http\FormRequest;
 
 
-class LoginRequest extends FormRequest
+class LoginRequest extends BaseFormRequest
 {
 
     /**
@@ -18,9 +18,14 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => UserValidateRule::loginEmail(),
-            'password' => UserValidateRule::checkPassword(),
-            'device_name' => TokenValidateRule::deviceName(),
+            'email' => ['required', 'string', 'email', 'max:255'],
+            'password' => ['required', 'string'],
+            'device_name' => ['required', 'string'],
         ];
+    }
+
+    public function authorize()
+    {
+        return true;
     }
 }
