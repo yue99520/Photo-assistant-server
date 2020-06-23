@@ -20,7 +20,7 @@ Route::post('/member/register', 'AuthController@register');
 
 Route::post('/member/login', 'AuthController@login');
 
-Route::post('/member/login_check', 'AuthController@isLogin')->middleware('auth:sanctum');
+Route::post('/member/login_check', 'AuthController@isLogin');
 
 Route::post('/member/logout', 'AuthController@logout')->middleware('auth:sanctum');
 /*

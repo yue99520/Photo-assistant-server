@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Auth\IsLoginRequest;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Http\Response\StandardHttpResponse;
 use App\User;
 use Illuminate\Support\Facades\Hash;
+use Laravel\Sanctum\PersonalAccessToken;
 use function auth;
 
 class AuthController extends Controller
@@ -20,6 +22,8 @@ class AuthController extends Controller
         if ($user && Hash::check($validatedData['password'], $user->password)) {
 
             $token = $user->createToken($validatedData['device_name'])->plainTextToken;
+
+            $token = explode("|", $token)[1];
 
             return response()->json(StandardHttpResponse::json(true, "ok", [
                 "token" => $token,
@@ -35,25 +39,35 @@ class AuthController extends Controller
     {
         $validatedData = $request->validated();
 
-        $password = Hash::make($validatedData['password']);
+        $validatedData['password'] = Hash::make($validatedData['password']);
 
-        $user = User::query()->create([
-            "password" => $password
-        ]);
+        $user = User::query()->create($validatedData);
 
-        return response()->json(StandardHttpResponse::json(true, "ok", $user->toArray()));
+        return response()->json(StandardHttpResponse::json(true, "ok", [
+            'user' => $user->toArray()
+        ]));
     }
 
     public function logout()
     {
-        auth()->user()->currentAccessToken()->delete();
-
-        return response()->json(StandardHttpResponse::json(true, "ok", []));
+        auth()->user()->tokens()->delete();
+        return response()->json(StandardHttpResponse::json(true, "ok", [
+            //
+        ]));
     }
 
-    public function isLogin()
+    public function isLogin(IsLoginRequest $request)
     {
-        $user = auth()->user();
-        return response()->json(StandardHttpResponse::json(true, "ok", $user->toArray()));
+        $validatedData = $request->validated();
+        if (PersonalAccessToken::findToken($validatedData['token']) != null) {
+
+            return response()->json(StandardHttpResponse::json(true, "ok", [
+                //
+            ]));
+        } else {
+            return response()->json(StandardHttpResponse::json(false, "fail", [
+                //
+            ]));
+        }
     }
 }
