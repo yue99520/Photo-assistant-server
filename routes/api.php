@@ -16,13 +16,13 @@ use Illuminate\Support\Facades\Route;
 /*
  * Auth routes
  */
-Route::post('/register', 'AuthController@register');
+Route::post('/member/register', 'AuthController@register');
 
-Route::post('/login', 'AuthController@login');
+Route::post('/member/login', 'AuthController@login');
 
-Route::post('/login_check', 'AuthController@isLogin')->middleware('auth:sanctum');
+Route::post('/member/login_check', 'AuthController@isLogin')->middleware('auth:sanctum');
 
-Route::post('/logout', 'AuthController@logout')->middleware('auth:sanctum');
+Route::post('/member/logout', 'AuthController@logout')->middleware('auth:sanctum');
 /*
  * User routes
  */
