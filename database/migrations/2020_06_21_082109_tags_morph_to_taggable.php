@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTagTable extends Migration
+class TagsMorphToTaggable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,8 @@ class CreateTagTable extends Migration
      */
     public function up()
     {
-        Schema::create('tag', function (Blueprint $table) {
-            $table->id();
-            $table->string("title")->nullable(false);
-            $table->timestamps();
+        Schema::table('tags', function (Blueprint $table) {
+            $table->nullableMorphs("taggable");
         });
     }
 
@@ -27,6 +25,6 @@ class CreateTagTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tag');
+        //
     }
 }
