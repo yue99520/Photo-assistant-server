@@ -14,9 +14,9 @@ interface SearchScope
 
     const GLOBAL = 3;
 
-    function getTypes(): Collection;
+    function getSearchableNames(): Collection;
 
-    function setTypes(Collection $types);
+    function setSearchableNames(Collection $types);
 
     function getRange(): int;
 

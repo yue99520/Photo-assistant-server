@@ -5,9 +5,9 @@ namespace App\Contracts\Search;
 
 
 use DateInterval;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Collection;
 
-interface SearchResult
+interface Result
 {
     function getKey(): string;
 
@@ -17,5 +17,5 @@ interface SearchResult
 
     function getCases(): Collection;
 
-    function getCasesCount(): int;
+    function toArray(): array;
 }

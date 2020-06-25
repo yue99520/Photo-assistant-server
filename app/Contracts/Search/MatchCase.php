@@ -4,13 +4,15 @@
 namespace App\Contracts\Search;
 
 
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Collection;
 
 interface MatchCase
 {
     function getScore();
 
+    function getSearchable(): Searchable;
+
     function getMatchesWords(): Collection;
 
-    function getSearchableType(): int;
+    function getSearchableClassName(): string;
 }

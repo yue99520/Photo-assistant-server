@@ -8,7 +8,9 @@ use Illuminate\Database\Eloquent\Collection;
 
 interface Searchable
 {
-    function getKeyWords(): Collection;
+    function getSearchableTitle(): string;
+
+    function getKeywords(): Collection;
 
     function getSearchableType(): int;
 }
